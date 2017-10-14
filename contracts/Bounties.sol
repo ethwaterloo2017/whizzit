@@ -5,11 +5,7 @@ contract Bounties {
   mapping(uint => address) public q_to_expert_address;
   mapping(uint => uint) public q_to_price;
   mapping(address => uint) public pending_withdrawal;
-  uint question_id;
-
-  function Bounties(){
-    question_id = 0;
-  }
+  uint question_id = 0;
 
   function releaseMilestone(uint installment) {
     require(installment <= q_to_price[user_address_to_question[msg.sender]]);

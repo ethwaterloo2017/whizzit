@@ -1,5 +1,5 @@
-var Bounties = artifacts.require("./Bounties.sol");
+var Migrations = artifacts.require("./Migrations.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Bounties);
+  deployer.deploy(Migrations);
 };
