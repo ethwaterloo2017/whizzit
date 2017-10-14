@@ -60,6 +60,9 @@ $(function() {
     });
 });
 
-function lockFunds() {
-
+function lockFunds(bounty) {
+    App.contracts.Bounties.deployed().then(function(instance) {
+        bountiesInstance = instance;
+        return bountiesInstance.lockFunds().sendTransaction({from: "WRITE ADDRESS HERE", value: bounty });
+    }
 }

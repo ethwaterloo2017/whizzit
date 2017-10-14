@@ -127,11 +127,13 @@ function listMajors(auth) {
 }
 
 function onEdit(e){
+
     var range = e.range;
     var row = range.getRow();
 
     //Get the question ID
-    var cell = range.getCell(row,4);
-    var q_id = cell.getValue();
+    var cell = range.getCell(row,1);
+    var bounty = cell.getValue();
 
+    App.lockFunds(bounty);
 }
