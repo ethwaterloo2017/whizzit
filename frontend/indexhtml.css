@@ -5,7 +5,7 @@ table.blueTable {
   width: 95%;
   text-align: left;
   border-collapse: collapse;
-  margin: 2.5% 2.5%;
+  margin: 0% 2.5% 2.5% 2.5%;
 }
 table.blueTable td, table.blueTable th {
   border: 1px solid #AAAAAA;
@@ -50,6 +50,12 @@ table.blueTable tfoot .links a{
   color: #FFFFFF;
   padding: 2px 8px;
   border-radius: 5px;
+}
+
+#Header {
+  margin:2.5% 2.5% 1% 2.5%;
+  font-size: 25px;
+  color: #FF7D33;
 }
 
 button {

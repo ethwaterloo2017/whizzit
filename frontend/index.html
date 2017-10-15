@@ -6,11 +6,12 @@
     <head>
       <title>Whizzit</title>
       <meta charset='utf-8' />
-      <link rel="stylesheet" href="indexhtml.css">
+      <link rel="stylesheet" href="css/indexhtml.css">
       <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     </head>
     <body>
 
+      <p id = "Header">Top Questions</p>
       <!--Add buttons to initiate auth sequence and sign out-->
       <button id="authorize-button" style="display: none;"></button>
       <button id="signout-button" style="display: none;"></button>
@@ -19,7 +20,9 @@
       <script src="/jquery.js"></script>
       <script type="text/javascript">
         // Client ID and API key from the Developer Console
-        // removed to prevent illegal access
+        var CLIENT_ID = '565869591192-1ocak4si2a0aje7j1vo080f0kc20k4r4.apps.googleusercontent.com';
+        var API_KEY = 'AIzaSyDR_gbMNTKwThjw7dOmfIx1sqva_8j0MT4';
+
         // Array of API discovery doc URLs for APIs used by the quickstart
         var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
@@ -140,10 +143,10 @@
               var j = row_data[i].length-1;
               var cell = document.createElement("td");
               var cella = document.createElement("a");
-              var cellaText = document.createTextNode(row_data[i][j]);
+              var cellaText = document.createTextNode("Answer");
               cella.appendChild(cellaText);
               cella.href = row_data[i][j];
-              cella.id = "a"
+              cella.id = "ahref";
               cell.appendChild(cella);
               row.appendChild(cell);
               // add the row to the end of the table body
@@ -174,7 +177,6 @@
             range: 'Forum!$A$1:$YY',
           }).then(function(response) {
             var range = response.result;
-            console.log(range);
             if (range.values.length > 0) {
               generate_table(range.values);
               // for (i = 0; i < range.values.length; i++) {
