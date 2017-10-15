@@ -1,0 +1,148 @@
+{
+  "contract_name": "Bounties",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "q_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "answer",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "installment",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseMilestone",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "pending_withdrawal",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "q_to_price",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "question_id",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "user_address_to_question",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "addQuestion",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "q_to_expert_address",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000600455341561001457600080fd5b5b6103e0806100246000396000f300606060405236156100965763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166306f70295811461009b578063317debf5146100b35780633ccfd60b146100cb5780637965307e146100e0578063843f39b6146101115780638cbb4fee146101395780639a0af8011461015e578063b4740b8c1461018f578063fbb6ce72146101a9575b600080fd5b34156100a657600080fd5b6100b16004356101db565b005b34156100be57600080fd5b6100b1600435610235565b005b34156100d657600080fd5b6100b16102b1565b005b34156100eb57600080fd5b6100ff600160a060020a0360043516610323565b60405190815260200160405180910390f35b341561011c57600080fd5b6100ff600435610335565b60405190815260200160405180910390f35b341561014457600080fd5b6100ff610347565b60405190815260200160405180910390f35b341561016957600080fd5b6100ff600160a060020a036004351661034d565b60405190815260200160405180910390f35b6100ff61035f565b60405190815260200160405180910390f35b34156101b457600080fd5b6101bf600435610399565b604051600160a060020a03909116815260200160405180910390f35b600081815260016020526040902054600160a060020a0316156101fd57600080fd5b6000818152600160205260409020805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b50565b600160a060020a033316600090815260208181526040808320548352600290915281205482111561026557600080fd5b50600160a060020a0333811660009081526020818152604080832054808452600283528184208054879003905560018352818420549094168352600390915290208054830190555b5050565b600160a060020a0333166000908152600360205260408120548190116102d657600080fd5b50600160a060020a033316600081815260036020526040808220805492905590919082156108fc0290839051600060405180830381858888f19350505050151561023257600080fd5b5b50565b60036020526000908152604090205481565b60026020526000908152604090205481565b60045481565b60006020819052908152604090205481565b60048054600160a060020a0333166000908152602081815260408083208490559282526002905220349055805460018101909155805b5090565b600160205260009081526040902054600160a060020a0316815600a165627a7a7230582061ce4432ee8572b3c525591e8ff2f6b098f7fe9fd6e7fee842ad4dd60d2067d60029",
+  "networks": {
+    "1508010805998": {
+      "events": {},
+      "links": {},
+      "address": "0x6636b9551a8fed64944f34315c4666a8d6152566",
+      "updated_at": 1508032444296
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1508032444296
+}
