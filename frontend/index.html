@@ -2,17 +2,18 @@
 <html>
   <div class="high">
     <div id="table"><div>
-    <img src="http://localhost:8000/whizzitLogo.png" align="middle" width="30%" height="30%">
+    <img src="http://localhost:8000/navbarlogo.png" align="middle" width="20%" height="10%">
     <head>
       <title>Whizzit</title>
       <meta charset='utf-8' />
-      <link rel="stylesheet" href="index.css"/>
+      <link rel="stylesheet" href="indexhtml.css">
+      <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     </head>
     <body>
 
       <!--Add buttons to initiate auth sequence and sign out-->
-      <button id="authorize-button" style="display: none;">Authorize</button>
-      <button id="signout-button" style="display: none;">Sign Out</button>
+      <button id="authorize-button" style="display: none;"></button>
+      <button id="signout-button" style="display: none;"></button>
 
 
       <script src="/jquery.js"></script>
@@ -65,7 +66,7 @@
           if (isSignedIn) {
             authorizeButton.style.display = 'none';
             signoutButton.style.display = 'block';
-            listMajors();
+            getData();
           } else {
             authorizeButton.style.display = 'block';
             signoutButton.style.display = 'none';
@@ -142,7 +143,7 @@
               var cellaText = document.createTextNode(row_data[i][j]);
               cella.appendChild(cellaText);
               cella.href = row_data[i][j];
-
+              cella.id = "a"
               cell.appendChild(cella);
               row.appendChild(cell);
               // add the row to the end of the table body
@@ -159,7 +160,7 @@
         }
 
 
-        $('a').click(function(){
+        $('#a').click(function(){
           alert('Sign new href executed.');
         });
 
@@ -173,6 +174,7 @@
             range: 'Forum!$A$1:$YY',
           }).then(function(response) {
             var range = response.result;
+            console.log(range);
             if (range.values.length > 0) {
               generate_table(range.values);
               // for (i = 0; i < range.values.length; i++) {
