@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <div class="high">
+    <div id="table"><div>
+    <img src="http://localhost:8000/src/images/navbarlogo.png" align="middle" width="20%" height="10%">
+    <head>
+      <title>Whizzit</title>
+      <meta charset='utf-8' />
+      <link rel="stylesheet" href="css/indexhtml.css">
+      <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    </head>
+    <body>
+
+      <p id = "Header">Top Questions</p>
+      <!--Add buttons to initiate auth sequence and sign out-->
+      <button id="authorize-button" style="display: none;"></button>
+      <button id="signout-button" style="display: none;"></button>
+
+
+      <script src="js/jquery.js"></script>
+      <script src="js/answer.js"></script>
+      <script src="js/sheet.js"></script>
+      <script type="text/javascript">
+        // Client ID and API key from the Developer Console
+        var CLIENT_ID = '565869591192-1ocak4si2a0aje7j1vo080f0kc20k4r4.apps.googleusercontent.com';
+        var API_KEY = 'AIzaSyDR_gbMNTKwThjw7dOmfIx1sqva_8j0MT4';
+
+        // Array of API discovery doc URLs for APIs used by the quickstart
+        var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+        // Authorization scopes required by the API; multiple scopes can be
+        // included, separated by spaces.
+        var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+        var authorizeButton = document.getElementById('authorize-button');
+        var signoutButton = document.getElementById('signout-button');
+
+        /**
+         *  On load, called to load the auth2 library and API client library.
+         */
+        function handleClientLoad() {
+          gapi.load('client:auth2', initClient);
+        }
+
+        /**
+         *  Initializes the API client library and sets up sign-in state
+         *  listeners.
+         */
+
+        function initClient() {
+          gapi.client.init({
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES
+          }).then(function () {
+            // Listen for sign-in state changes.
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+            // Handle the initial sign-in state.
+            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+            authorizeButton.onclick = handleAuthClick;
+            signoutButton.onclick = handleSignoutClick;
+          });
+        }
+
+        /**
+         *  Called when the signed in status changes, to update the UI
+         *  appropriately. After a sign-in, the API is called.
+         */
+        function updateSigninStatus(isSignedIn) {
+          if (isSignedIn) {
+                    console.log('1');
+            authorizeButton.style.display = 'none';
+            signoutButton.style.display = 'block';
+            getData();
+          } else {
+                    console.log('2');
+            authorizeButton.style.display = 'block';
+            signoutButton.style.display = 'none';
+          }
+        }
+
+        /**
+         *  Sign in the user upon button click.
+         */
+        function handleAuthClick(event) {
+          gapi.auth2.getAuthInstance().signIn();
+        }
+
+        /**
+         *  Sign out the user upon button click.
+         */
+        function handleSignoutClick(event) {
+          gapi.auth2.getAuthInstance().signOut();
+          location.reload();
+        }
+
+
+        function generate_table(row_data) {
+          console.log(row_data);
+          // get the reference for the body
+          var body = document.getElementById("table");
+
+          // creates a <table> element and a <tbody> element
+          var tbl = document.createElement("table");
+          tbl.className = "blueTable"
+          var tblHead = document.createElement("thead");
+          var tblBody = document.createElement("tbody");
+
+          // creates a table row
+          var row = document.createElement("tr");
+
+          for (var j = 0; j < row_data[0].length; j++) {
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+
+            var cell = document.createElement("th");
+            var cellText = document.createTextNode(row_data[0][j]);
+
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+          }
+          // add the row to the end of the table body
+          tblHead.appendChild(row);
+
+
+
+          // creating all cells
+          for (var i = 1; i < row_data.length; i++) {
+
+            if (row_data[i].length != 0){
+
+              // creates a table row
+              var row = document.createElement("tr");
+
+              for (var j = 0; j < row_data[i].length-1; j++) {
+                // Create a <td> element and a text node, make the text
+                // node the contents of the <td>, and put the <td> at
+                // the end of the table row
+
+                var cell = document.createElement("td");
+                var cellText = document.createTextNode(row_data[i][j]);
+
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+              }
+              var j = row_data[i].length-1;
+              var cell = document.createElement("td");
+              var cella = document.createElement("a");
+              var cellaText = document.createTextNode("Answer");
+              cella.appendChild(cellaText);
+              cella.href = row_data[i][j];
+              cella.id = "ahref";
+              cell.appendChild(cella);
+              row.appendChild(cell);
+              // add the row to the end of the table body
+              tblBody.appendChild(row);
+            }
+          }
+          tbl.appendChild(tblHead);
+          // put the <tbody> in the <table>
+          tbl.appendChild(tblBody);
+          // appends <table> into <body>
+          body.appendChild(tbl);
+          // sets the border attribute of tbl to 2;
+          tbl.setAttribute("border", "2");
+        }
+
+
+        $('#a').click(function(){
+          alert('Sign new href executed.');
+        });
+
+        /**
+         * Print the names and majors of students in a sample spreadsheet:
+         * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+         */
+        function getData() {
+          gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: '1xKi8R1E1tlMRwxkuFxtj5o_6-0jA7tAcAkFvAGLai7E',
+            range: 'Forum!$A$1:$YY',
+          }).then(function(response) {
+            var range = response.result;
+            console.log(range);
+            if (range.values.length > 0) {
+              generate_table(range.values);
+              // for (i = 0; i < range.values.length; i++) {
+              //   var row = range.values[i];
+              //   // Print columns A and E, which correspond to indices 0 and 4.
+              //   appendPre(row[0] + ', ' + row[1]+ ', ' + row[2]+ ', ' + row[3]);
+              // }
+            } else {
+              appendPre('No data found.');
+            }
+          }, function(response) {
+            appendPre('Error: ' + response.result.error.message);
+          });
+        }
+
+      </script>
+
+      <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      </script>
+    </body>
+  </div>
+</html>

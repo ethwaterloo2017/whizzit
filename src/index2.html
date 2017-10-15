@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Whizzit</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/web3.min.js"></script>
+    <script type="text/javascript" src="./js/compile_deploy_contract.js"></script>
+  </head>
+  <body>
+    <form class="container" id="needs-validation" style="padding-top:5%;" novalidate>
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom01">Question</label>
+          <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="My contract doesn't deploy" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom02">Bounty(ETH)</label>
+          <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="1" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom03">Your Public Address</label>
+          <input type="text" class="form-control" id="validationCustom03" placeholder="0x123456789" required>
+        </div>
+      </div>
+      <div class="btn btn-primary" type="submit" onclick="return sub()" style="margin-top:3%;">Submit form</div>
+    </form>
+    <div id="table"><div>
+    <script>
+
+      var a = [
+      ];
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        function sub() {
+          function generate_table(row_data) {
+            console.log(21432);
+            // get the reference for the body
+            var body = document.getElementById("table");
+
+            // creates a <table> element and a <tbody> element
+            var tbl = document.createElement("table");
+            tbl.className = "blueTable"
+            var tblHead = document.createElement("thead");
+            var tblBody = document.createElement("tbody");
+
+            // creates a table row
+            var row = document.createElement("tr");
+
+            for (var j = 0; j < row_data[0].length; j++) {
+              // Create a <td> element and a text node, make the text
+              // node the contents of the <td>, and put the <td> at
+              // the end of the table row
+
+              var cell = document.createElement("th");
+              var cellText = document.createTextNode(row_data[0][j]);
+
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+            }
+            // add the row to the end of the table body
+            tblHead.appendChild(row);
+
+
+
+            // creating all cells
+            for (var i = 1; i < row_data.length; i++) {
+
+              if (row_data[i].length != 0){
+
+                // creates a table row
+                var row = document.createElement("tr");
+
+                for (var j = 0; j < row_data[i].length-1; j++) {
+                  // Create a <td> element and a text node, make the text
+                  // node the contents of the <td>, and put the <td> at
+                  // the end of the table row
+
+                  var cell = document.createElement("td");
+                  var cellText = document.createTextNode(row_data[i][j]);
+
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                }
+                var j = row_data[i].length-1;
+                var cell = document.createElement("td");
+                var cella = document.createElement("a");
+                var cellaText = document.createTextNode("Answer");
+                cella.appendChild(cellaText);
+                cella.href = row_data[i][j];
+                cella.id = "ahref";
+                cell.appendChild(cella);
+                row.appendChild(cell);
+                // add the row to the end of the table body
+                tblBody.appendChild(row);
+              }
+            }
+            tbl.appendChild(tblHead);
+            // put the <tbody> in the <table>
+            tbl.appendChild(tblBody);
+            // appends <table> into <body>
+            body.appendChild(tbl);
+            // sets the border attribute of tbl to 2;
+            tbl.setAttribute("border", "2");
+          };
+
+          a.push([document.getElementById("validationCustom01").value,document.getElementById("validationCustom02").value,"ETH","Solidity","localhost:8000/"+a.length]);
+          console.log(a);
+          addQuestion();
+          generate_table(a);
+        };
+
+
+    </script>
+  </body>
+</html>
