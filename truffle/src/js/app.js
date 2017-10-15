@@ -29,40 +29,7 @@ App = {
 
             // Use our contract to retrieve and mark the adopted pets
         });
-        return App.bindEvents();
-    },
-
-    bindEvents: function() {
-        //$(document).on('click', '.btn-adopt', App.handleAdopt);
-    },
-
-    markAdopted: function(adopters, account) {
-        /*
-         * Replace me...
-         */
-    },
-
-    handleAdopt: function() {
-        event.preventDefault();
-
-        //var petId = parseInt($(event.target).data('id'));
-
-        /*
-         * Replace me...
-         */
     }
-
 };
 
-$(function() {
-    $(window).load(function() {
-        App.init();
-    });
-});
-
-function lockFunds(bounty) {
-    App.contracts.Bounties.deployed().then(function(instance) {
-        bountiesInstance = instance;
-        return bountiesInstance.lockFunds().sendTransaction({from: "WRITE ADDRESS HERE", value: bounty });
-    }
-}
+module.exports = App;

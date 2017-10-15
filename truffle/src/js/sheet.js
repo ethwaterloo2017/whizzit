@@ -3,7 +3,7 @@ var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
-var app = require('./app.js');
+var App = require('./app.js');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
@@ -126,14 +126,28 @@ function listMajors(auth) {
     });
 }
 
+function lockFunds(bounty, address) {
+    App.contracts.Bounties.deployed().then(function(instance) {
+        bountiesInstance = instance;
+        return bountiesInstance.addQuestion().sendTransaction({from: address.toString(), value: bounty });
+    }
+}
+
 function onEdit(e){
 
     var range = e.range;
     var row = range.getRow();
 
     //Get the question ID
-    var cell = range.getCell(row,1);
-    var bounty = cell.getValue();
+    var cell1 = range.getCell(row,1);
+    var cell2 = range.getCell(row,2);
+    var bounty = cell1.getValue();
+    var address = cell2.getValue();
+    lockFunds(bounty, address);
+}
 
-    App.lockFunds(bounty);
+$(function() {
+    $(window).load(function() {
+        App.init();
+    });
 }
