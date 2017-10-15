@@ -7,7 +7,8 @@ import "../contracts/Bounties.sol";
 contract TestBounties {
   Bounties b = Bounties(DeployedAddresses.Bounties());
 
-  function testContructBounty() {
-    Assert.equal(b.question_id,0,"checks constructor");
+  function testAddQuestion() {
+    uint id = b.addQuestion();
+    Assert.equal(id,1,"checks constructor");
   }
 }
