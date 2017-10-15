@@ -1,4 +1,4 @@
-
+var $ = require('jquery');
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
@@ -20,7 +20,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     }
     // Authorize a client with the loaded credentials, then call the
     // Google Sheets API.
-    authorize(JSON.parse(content), listMajors);
+    authorize(JSON.parse(content));
 });
 
 /**
@@ -105,8 +105,8 @@ function listMajors(auth) {
     var sheets = google.sheets('v4');
     sheets.spreadsheets.values.get({
         auth: auth,
-        spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-        range: 'Class Data!A2:E',
+        spreadsheetId: '1xKi8R1E1tlMRwxkuFxtj5o_6-0jA7tAcAkFvAGLai7E',
+        range: 'Responses!$A$1:$YY',
     }, function(err, response) {
         if (err) {
             console.log('The API returned an error: ' + err);
@@ -130,7 +130,7 @@ function lockFunds(bounty, address) {
     App.contracts.Bounties.deployed().then(function(instance) {
         bountiesInstance = instance;
         return bountiesInstance.addQuestion().sendTransaction({from: address.toString(), value: bounty });
-    }
+    });
 }
 
 function onEdit(e){
@@ -145,9 +145,10 @@ function onEdit(e){
     var address = cell2.getValue();
     lockFunds(bounty, address);
 }
-
+/**
 $(function() {
     $(window).load(function() {
         App.init();
     });
-}
+})
+**/
